@@ -1,4 +1,11 @@
 import { getTasks, removeTask, editTask } from "./api.js";
+import { createEditTaskForm } from "./components/create-edit-form-task.js";
+
+// открываем форму редактирования задачи
+// пихаем в форму значения кнкретной задачи
+// вешаем обработчики событий на элементы формы
+// вешаем обработчик события на сохранение формы -> отправляем запрос PUT
+// добавляем кнопку отмены
 
 // начальный рендер
 getTasks().then(renderTasks);
@@ -44,18 +51,26 @@ function makeTaskItem(task) {
   taskActions.append(editButton);
 
   editButton.addEventListener("click", () => {
-    console.log("Task Prev Title", task.title);
-    // открываем форму редактирования задачи
-    // пихаем в форму значения кнкретной задачи
-    // вешаем обработчики событий на элементы формы
-    // вешаем обработчик события на сохранение формы -> отправляем запрос PUT
-    // добавляем кнопку отмены
+    const handleSubmitEditTask = (event) => {
+      const formData = new FormData(event.target);
+      formData.append("id", id);
+      const updatedTask = Object.fromEntries(formData.entries());
+      editTask(updatedTask)
+        .then(() => {
+          event.target.remove();
+          getTasks().then(renderTasks);
+        })
+        .catch(console.log);
+    };
 
-    task.title = "aasdfasdfadsfadsfasfdsfds!";
+    const editFormElem = createEditTaskForm(task, handleSubmitEditTask);
+    document.body.append(editFormElem);
 
-    editTask(task)
-      .then(() => getTasks().then(renderTasks))
-      .catch(console.log);
+    // TODO:
+    // при открытии формы -> фокус на первом поле
+    // добавить валидацию на пустые поля (title)
+    // открывать возможность отправить запрос на сервер только если данные менялись (дизейл кнопки сохранить)
+    // добавить компонент модального окна с overlay ....
   });
 
   taskElement.append(taskActions);

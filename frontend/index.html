@@ -7,6 +7,11 @@
     <title>Task Tracker</title>
 
     <style>
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
       .task-remove-button {
         width: 180px;
         height: 40px;
@@ -42,6 +47,29 @@
       .task-actions {
         display: flex;
         gap: 10px;
+      }
+
+      /* EDIT TASK FORM */
+
+      .edit-task-form {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        width: 500px;
+        border: 2px solid black;
+
+        background: #fff8e8;
+        z-index: 9999;
+      }
+
+      .edit-form-item {
+        width: 100%;
       }
     </style>
   </head>
