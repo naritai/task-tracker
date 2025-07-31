@@ -5,77 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Task Tracker</title>
-
-    <style>
-      body {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .task-remove-button {
-        width: 180px;
-        height: 40px;
-        outline: none;
-        cursor: pointer;
-        text-transform: uppercase;
-        border-radius: 10px;
-        background: rgba(43, 45, 66, 1);
-        color: #f7f7f9;
-        border: none;
-      }
-
-      .task-remove-button:hover {
-        background: rgba(43, 45, 66, 0.7);
-      }
-
-      .task-edit-button {
-        width: 180px;
-        height: 40px;
-        outline: none;
-        cursor: pointer;
-        text-transform: uppercase;
-        border-radius: 10px;
-        background: rgb(91, 102, 223);
-        color: #f7f7f9;
-        border: none;
-      }
-
-      .task-edit-button:hover {
-        background: rgb(91, 102, 223, 0.7);
-      }
-
-      .task-actions {
-        display: flex;
-        gap: 10px;
-      }
-
-      /* EDIT TASK FORM */
-
-      .edit-task-form {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        padding: 20px;
-        width: 500px;
-        border: 2px solid black;
-
-        background: #fff8e8;
-        z-index: 9999;
-      }
-
-      .edit-form-item {
-        width: 100%;
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css"></link>
   </head>
   <body>
-    <h1>Hello From Task Tracker!</h1>
-    <div class="tasks"></div>
+    <main>
+      <h1 id="main_title">Task Tracker</h1>
+      <button class="button task-add-button">Add Task</button>
+      <div class="tasks"></div>
+    </main>  
     <script type="module" src="./main.js"></script>
   </body>
 </html>

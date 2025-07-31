@@ -1,11 +1,5 @@
-import { getTasks, removeTask, editTask } from "./api.js";
-import { createEditTaskForm } from "./components/create-edit-form-task.js";
-
-// открываем форму редактирования задачи
-// пихаем в форму значения кнкретной задачи
-// вешаем обработчики событий на элементы формы
-// вешаем обработчик события на сохранение формы -> отправляем запрос PUT
-// добавляем кнопку отмены
+import { getTasks, removeTask, editTask, addTask } from "./api.js";
+import { createEditTaskForm, createAddTaskForm } from "./components/index.js";
 
 // начальный рендер
 getTasks().then(renderTasks);
@@ -35,8 +29,8 @@ function makeTaskItem(task) {
   taskActions.classList.add("task-actions");
 
   const removeButton = document.createElement("button");
-  removeButton.classList.add("task-remove-button");
-  removeButton.textContent = "remove button";
+  removeButton.classList.add("button", "task-remove-button");
+  removeButton.textContent = "remove task";
   taskActions.append(removeButton);
 
   removeButton.addEventListener("click", () => {
@@ -46,8 +40,8 @@ function makeTaskItem(task) {
   });
 
   const editButton = document.createElement("button");
-  editButton.classList.add("task-edit-button");
-  editButton.textContent = "edit button";
+  editButton.classList.add("button", "task-edit-button");
+  editButton.textContent = "edit task";
   taskActions.append(editButton);
 
   editButton.addEventListener("click", () => {
@@ -92,4 +86,38 @@ function renderTasks(tasks) {
   });
 
   tasksContainer.append(taskList);
+}
+
+const addNewTaskButton = document.querySelector(".task-add-button");
+
+addNewTaskButton.addEventListener("click", () => {
+  const handleSubmitAddTask = (event) => {
+    const formData = new FormData(event.target);
+    const newTask = Object.fromEntries(formData.entries());
+
+    const isValid = isTaskValid(newTask);
+
+    if (!isValid) {
+      const errElem = event.target.querySelector(".form-error");
+      errElem.innerHTML = "";
+      errElem.textContent = "Форма невалидна, заполните все поля и повторите.";
+      errElem.hidden = false;
+
+      return;
+    } else {
+      addTask(newTask)
+        .then(() => {
+          event.target.remove();
+          getTasks().then(renderTasks);
+        })
+        .catch(console.log);
+    }
+  };
+
+  const addFormElem = createAddTaskForm(handleSubmitAddTask);
+  document.body.append(addFormElem);
+});
+
+function isTaskValid(task) {
+  return !Object.values(task).some((item) => item === "");
 }
