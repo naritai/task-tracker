@@ -1,3 +1,2 @@
-import { createEditTaskForm } from "./create-edit-task-form.js";
-import { createAddTaskForm } from "./create-add-task-form.js";
-export { createEditTaskForm, createAddTaskForm };
+import { taskForm } from "./task-form/task-form.js";
+export { taskForm };

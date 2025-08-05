@@ -1,5 +1,13 @@
-import { getTasks, removeTask, editTask, addTask } from "./api.js";
-import { createEditTaskForm, createAddTaskForm } from "./components/index.js";
+import { getTasks, removeTask, editTask, addTask } from "../api/tasks.js";
+import { taskForm } from "../components/index.js";
+
+const appContainer = document.querySelector("#app");
+
+appContainer.innerHTML = `
+    <h1 id="main_title">Task Tracker</h1>
+  <button class="button task-add-button">Add Task</button>
+  <div class="tasks"></div>
+`;
 
 // начальный рендер
 getTasks().then(renderTasks);
@@ -17,7 +25,7 @@ function makeTaskItem(task) {
 
   const taskDescription = document.createElement("p");
   taskDescription.classList.add("task-description");
-  taskDescription.textContent = description;
+  taskDescription.innerHTML = description;
   taskElement.append(taskDescription);
 
   const taskStatus = document.createElement("h5");
@@ -45,26 +53,13 @@ function makeTaskItem(task) {
   taskActions.append(editButton);
 
   editButton.addEventListener("click", () => {
-    const handleSubmitEditTask = (event) => {
-      const formData = new FormData(event.target);
-      formData.append("id", id);
-      const updatedTask = Object.fromEntries(formData.entries());
+    const handleSubmitEditTask = (updatedTask) => {
       editTask(updatedTask)
-        .then(() => {
-          event.target.remove();
-          getTasks().then(renderTasks);
-        })
+        .then(() => getTasks().then(renderTasks))
         .catch(console.log);
     };
-
-    const editFormElem = createEditTaskForm(task, handleSubmitEditTask);
+    const editFormElem = taskForm(task, handleSubmitEditTask);
     document.body.append(editFormElem);
-
-    // TODO:
-    // при открытии формы -> фокус на первом поле
-    // добавить валидацию на пустые поля (title)
-    // открывать возможность отправить запрос на сервер только если данные менялись (дизейл кнопки сохранить)
-    // добавить компонент модального окна с overlay ....
   });
 
   taskElement.append(taskActions);
@@ -91,33 +86,12 @@ function renderTasks(tasks) {
 const addNewTaskButton = document.querySelector(".task-add-button");
 
 addNewTaskButton.addEventListener("click", () => {
-  const handleSubmitAddTask = (event) => {
-    const formData = new FormData(event.target);
-    const newTask = Object.fromEntries(formData.entries());
-
-    const isValid = isTaskValid(newTask);
-
-    if (!isValid) {
-      const errElem = event.target.querySelector(".form-error");
-      errElem.innerHTML = "";
-      errElem.textContent = "Форма невалидна, заполните все поля и повторите.";
-      errElem.hidden = false;
-
-      return;
-    } else {
-      addTask(newTask)
-        .then(() => {
-          event.target.remove();
-          getTasks().then(renderTasks);
-        })
-        .catch(console.log);
-    }
+  const handleSubmitAddTask = (newTask) => {
+    addTask(newTask)
+      .then(() => getTasks().then(renderTasks))
+      .catch(console.log);
   };
 
-  const addFormElem = createAddTaskForm(handleSubmitAddTask);
+  const addFormElem = taskForm(null, handleSubmitAddTask);
   document.body.append(addFormElem);
 });
-
-function isTaskValid(task) {
-  return !Object.values(task).some((item) => item === "");
-}

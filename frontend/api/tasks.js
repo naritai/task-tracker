@@ -1,7 +1,6 @@
 const BASE_URL = "http://localhost:3000";
 
 export function getTasks() {
-  console.log("new get tasks");
   return fetch(`${BASE_URL}/tasks`)
     .then((response) => {
       return response.json();
