@@ -1,2 +1,1 @@
-import { taskForm } from "./task-form/task-form.js";
-export { taskForm };
+export { TaskForm } from "./task-form/TaskForm.js";

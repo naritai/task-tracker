@@ -1,7 +1,30 @@
 import { getTasks, removeTask, editTask, addTask } from "../api/tasks.js";
-import { taskForm } from "../components/index.js";
+import { TaskForm } from "../components/index.js";
+
+// class MainPage {
+//   constructor(contaienr) {
+//     this.container = contaienr;
+//   }
+
+//   render() {
+//     // соираем все таски
+//     // TaskItem
+//     // рендерим
+//     //
+
+//     const hadleToggleTask = (task) => {
+//       // do task process
+//       this.render();
+//     }
+
+//     // this.taskListComponents = ...
+
+//     // this.taskListComponents.forEach((item) => this.container.append(item));
+//   }
+// }
 
 const appContainer = document.querySelector("#app");
+new MainPage(appContainer);
 
 appContainer.innerHTML = `
     <h1 id="main_title">Task Tracker</h1>
@@ -53,13 +76,14 @@ function makeTaskItem(task) {
   taskActions.append(editButton);
 
   editButton.addEventListener("click", () => {
-    const handleSubmitEditTask = (updatedTask) => {
+    function handleSubmitEditTask(updatedTask) {
       editTask(updatedTask)
         .then(() => getTasks().then(renderTasks))
         .catch(console.log);
-    };
-    const editFormElem = taskForm(task, handleSubmitEditTask);
-    document.body.append(editFormElem);
+    }
+
+    const options = { task, onSubmit: handleSubmitEditTask };
+    document.body.append(new TaskForm(options).render());
   });
 
   taskElement.append(taskActions);
@@ -92,6 +116,6 @@ addNewTaskButton.addEventListener("click", () => {
       .catch(console.log);
   };
 
-  const addFormElem = taskForm(null, handleSubmitAddTask);
-  document.body.append(addFormElem);
+  const options = { onSubmit: handleSubmitAddTask };
+  document.body.append(new TaskForm(options).render());
 });
