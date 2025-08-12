@@ -26,11 +26,11 @@ body {
   cursor: default;
 }
 
-.task-remove-button {
+.task-remdeleteove-button {
   background: rgba(43, 45, 66, 1);
 }
 
-.task-remove-button:hover {
+.task-delete-button:hover {
   background: rgba(43, 45, 66, 0.7);
 }
 
