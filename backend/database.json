@@ -1,10 +1,28 @@
 {
   "tasks": [
     {
-      "title": "Cook pizza!!!!",
-      "description": "            Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n        ",
-      "status": "progress",
-      "id": "4"
+      "id": "1",
+      "title": "Make first web page",
+      "description": "Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "status": "progress"
+    },
+    {
+      "id": "2",
+      "title": "Run own server",
+      "description": "Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "status": "progress"
+    },
+    {
+      "id": "3",
+      "title": "Become a frontend developer",
+      "description": "Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "status": "progress"
+    },
+    {
+      "id": "4",
+      "title": "Cook pizza",
+      "description": "Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "status": "progress"
     },
     {
       "id": "5",
@@ -17,12 +35,22 @@
       "title": "Have a sex with blondie",
       "description": "Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "status": "progress"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Aleksandr",
+      "age": 30,
+      "role": "Admin",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzR0bIMZ71HVeR5zF4PihQaDvTQQk6bsVERw&s"
     },
     {
-      "id": "b454",
-      "title": "newnewnew",
-      "description": "            \n        newnewnew",
-      "status": "newnewnew"
+      "id": 2,
+      "name": "Aleksey",
+      "age": 17,
+      "role": "Student",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPFNeUn89NkscCQdePBFlIp7ixL81eU9pY3g&s"
     }
   ]
 }

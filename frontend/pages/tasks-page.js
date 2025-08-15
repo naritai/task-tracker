@@ -13,7 +13,7 @@ export class TasksPage {
 
   async render() {
     this.container.innerHTML = `
-        <h1 id="main_title">Task Tracker</h1>
+        <h1 id="main_title">Task List</h1>
         <button class="button task-add-button">Add Task</button>
         <div class="tasks">
           <ul class="task-list"></ul>
