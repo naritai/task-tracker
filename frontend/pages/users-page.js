@@ -5,8 +5,6 @@ export class UsersPage {
     this.container = container;
     this.usersElems = [];
     this.renderUsers = this.renderUsers.bind(this);
-
-    console.log("USERS PAGE RENDERED!");
   }
 
   async render() {
@@ -22,34 +20,24 @@ export class UsersPage {
   }
 
   renderUsers(users) {
-    // if (!Array.isArray(users)) {
-    //   throw new Error("tasks must be an array type");
-    // }
+    if (!Array.isArray(users)) {
+      throw new Error("tasks must be an array type");
+    }
 
     const usersList = this.container.querySelector(".users-list");
-
-    users.forEach((user) => {
-      console.log("users", user);
+    usersList.innerHTML = "";
+    users.forEach(({ name, age, role, avatar }) => {
+      const userContainer = document.createElement("div");
+      userContainer.innerHTML = `
+        <div>name: ${name} </div>
+        <div>age: ${age} </div>
+        <div>role: ${role} </div>
+        <div>
+          avatar: 
+          <img src="${avatar}" width="100" height="100"/>
+        </div>
+      `;
+      usersList.append(userContainer);
     });
-
-    // this.usersElems.forEach((user) => user.destroy());
-    // this.usersElems = [];
-
-    // const tasksList = this.container.querySelector(".task-list");
-    // if (!usersElems) {
-    //   throw new Error(
-    //     "No tasks list container element. Create container first."
-    //   );
-    // }
-    // usersElems.innerHTML = "";
-    // users.forEach((user) => {
-    //   const nextTask = new TaskItem({
-    //     user,
-    //     onDelete: this.handleDeleteTask,
-    //     onEdit: this.handleEditTask,
-    //   });
-    //   this.usersElems.push(nextTask);
-    //   usersElems.append(nextTask.render());
-    // });
   }
 }

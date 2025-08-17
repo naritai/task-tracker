@@ -4,41 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Task Tracker</title>
-    <link rel="stylesheet" href="./style.css"></link>
+    <link rel="stylesheet" href="./frontend/style.css"></link>
   </head>
   <body>
-
-    <nav class="navbar">
-      <a class="nav-bar-item" data-path="/" href="/">Tasks</a>
-      <a class="nav-bar-item" data-path="/users"href="/users">Users</a>
-    </nav>
-
     <div id="app"></div> 
-    <script type="module" src="./pages/main-page.js"></script>
-
-    <script>
-      (function (history) {
-        var pushState = history.pushState;
-        history.pushState = function (state) {
-          if (typeof history.onpushstate == "function") {
-            history.onpushstate({ state: state });
-          }
-          // ... whatever else you want to do
-          // maybe call onhashchange e.handler
-          return pushState.apply(history, arguments);
-        };
-      })(window.history);
-
-      console.log('PAGE LOADED!!!!');
-
-      const usersLinks = document.querySelectorAll('.nav-bar-item');
-
-      usersLinks.forEach((link) => {
-        link.addEventListener('click', (event) => {
-          event.preventDefault();
-          history.pushState({ route: event.target.dataset.path }, "", "/users");
-        });
-      });     
-    </script>
+    <script type="module" src="./frontend/pages/main-page.js"></script>
   </body>
 </html>
