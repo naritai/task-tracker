@@ -3,6 +3,7 @@ import { UsersPage } from "./users-page.js";
 import { Router } from "../core/index.js";
 import { NotFoundPage } from "./not-found-page.js";
 import { NavBar } from "../components/index.js";
+import "../styles/main.css";
 
 // render navigation for all the pages
 new NavBar({ container: document.body }).render();
