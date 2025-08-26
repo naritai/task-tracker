@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run run-mock-server & webpack serve",
-    "run-mock-server": "json-server ./mock-db/database.json"
+    "run-mock-server": "json-server ./mock-db/database.json",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
